@@ -37,15 +37,13 @@ export function startBackgroundServer(scullyConfig: ScullyConfig) {
     options.push('--port');
     options.push(String(port));
   }
-  spawn(
-    'node',
-    options,
 
-    {
-      detached: true,
-      // stdio: 'inherit',
-    }
-  ).on('close', (code) => {
+  log(`Starting scully server for puppet requests via command: node ${options.join(' ')}`);
+
+  spawn('node', options, {
+    detached: true,
+    // stdio: 'inherit',
+  }).on('close', (code) => {
     if (+code > 0) {
       const message = 'Problem starting background servers ' + code;
       logError(message);

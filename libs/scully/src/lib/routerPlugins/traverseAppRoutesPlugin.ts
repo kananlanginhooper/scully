@@ -35,7 +35,11 @@ Using stored unhandled routes!.
       } catch {}
     }
     log('traversing app for routes');
-    printProgress(undefined, 'Loading guess-parser');
+    if (scullyConfig.interactiveLogging) {
+      printProgress(undefined, 'Loading guess-parser');
+    } else {
+      log('Loading guess-parser');
+    }
     const excludedFiles =
       scullyConfig.guessParserOptions && scullyConfig.guessParserOptions.excludedFiles
         ? scullyConfig.guessParserOptions.excludedFiles

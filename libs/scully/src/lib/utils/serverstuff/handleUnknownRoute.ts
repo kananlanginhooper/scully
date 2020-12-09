@@ -6,7 +6,7 @@ import { handleTravesal, scullyConfig } from '..';
 import { findPlugin } from '../../pluginManagement';
 import { routesFileName } from '../../systemPlugins/storeRoutes';
 import { handle404 } from '../cli-options';
-import { logError, logWarn, yellow } from '../log';
+import { logError, logWarn, log, yellow } from '../log';
 import { pathToRegexp } from 'path-to-regexp';
 import { title404 } from './title404';
 import { loadConfig } from '../config';
@@ -16,9 +16,12 @@ export const handleUnknownRoute: RequestHandler = async (req, res, next) => {
   if (req.accepts('html')) {
     /** only handle 404 on html requests specially  */
     await loadConfig();
-    const distFolder = join(scullyConfig.homeFolder, scullyConfig.hostFolder || scullyConfig.distFolder);
+    const distFolder = scullyConfig.outDir;
     const distIndex = join(distFolder, '/index.html');
     const dist404 = join(distFolder, '/404.html');
+
+    // log('scullyConfig:', JSON.stringify({...scullyConfig, ...{extraRoutes: {}}}));
+
     // cmd-line takes precedence over config
     const h404 = (handle404.trim() === '' ? scullyConfig.handle404 : handle404).trim().toLowerCase();
 

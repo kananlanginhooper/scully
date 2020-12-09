@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 import { captureMessage } from './captureMessage';
 import { logSeverity, noLog } from './cli-options';
 import { findAngularJsonPath } from './findAngularJsonPath';
+import { scullyConfig } from './config';
 
 export const orange = chalk.hex('#FFA500');
 export const { white, red, yellow, green }: { [x: string]: any } = chalk;
@@ -57,7 +58,7 @@ const state = {
 
 function writeProgress(msg = state.lastMessage) {
   /** cursorTo isn't there in CI, don't write progress in CI at all. */
-  if (process.stdout.cursorTo) {
+  if (process.stdout.cursorTo && scullyConfig.interactiveLogging) {
     if (Date.now() - state.startTime > state.interval) {
       // tslint:disable-next-line: no-unused-expression
       state.lastSpin = spinToken.next().value;

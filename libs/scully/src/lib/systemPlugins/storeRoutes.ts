@@ -11,6 +11,7 @@ export const routesFileName = '/assets/scully-routes.json';
 
 export const storeRoutes = Symbol('storeRoutes');
 registerPlugin(scullySystem, storeRoutes, storeRoutesPlugin);
+
 async function storeRoutesPlugin(routes: HandledRoute[]) {
   /** in the angular source folder */
   const srcFile = join(scullyConfig.homeFolder, scullyConfig.sourceRoot, routesFileName);
@@ -44,20 +45,23 @@ async function storeRoutesPlugin(routes: HandledRoute[]) {
     }
     const write = (file, i, collection) => {
       createFolderFor(file);
-      printProgress(i + 1, 'Creating Route List:', collection.length);
+      if (scullyConfig.interactiveLogging) {
+        printProgress(i + 1, 'Creating Route List:', collection.length);
+      } else {
+        log('Creating Route List:', yellow(file));
+      }
       writeFileSync(file, jsonResult);
     };
     files.forEach(write);
-    log(`Route list created in files:${files.map(
-      (f) => `
-  "${yellow(f)}"`
-    )}
-`);
+    if (scullyConfig.interactiveLogging) {
+      log(`Route list created in files:${files.map((f) => `"${yellow(f)}"`)}
+      `);
+    }
   } catch {
     logError(`Could not write routes to files:${files.map(
       (f) => `
-  "${yellow(f)}"`
+        "${yellow(f)}"`
     )}
-`);
+    `);
   }
 }

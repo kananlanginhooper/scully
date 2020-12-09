@@ -19,6 +19,7 @@ export const config = new Promise<ScullyConfig>((resolve, reject) => {
       outDir: './dist/apps/sample-many-routes',
       routes: {},
       extraRoutes: arrDiseaseListRoutes,
+      interactiveLogging: false,
     };
     resolve(PromiseBuiltConfig);
   });
