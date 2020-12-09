@@ -1,8 +1,10 @@
 import { waitForIt } from '../renderPlugins/puppeteerRenderPlugin';
 import { log, logWarn, printProgress } from './log';
 import { performance } from 'perf_hooks';
+import { scullyConfig, ScullyConfig } from '../../';
 
 const progressTime = 100;
+
 /**
  * takes an array, and runs **MaxParalellTasks** in paralell until all tasks are node
  * @param MaxParalellTasks
@@ -22,7 +24,13 @@ export async function asyncPool<T>(MaxParalellTasks: number, array: T[], taskFn:
     const now = performance.now();
     if (now - logTime > progressTime) {
       const tasksLeft = Math.max(array.length - ret.length, executing.length);
-      printProgress(array.length + 1 - tasksLeft, 'Rendering Routes:', array.length);
+      if (scullyConfig.interactiveLogging) {
+        printProgress(array.length + 1 - tasksLeft, 'Rendering Routes:', array.length);
+      } else {
+        if (tasksLeft % 25) {
+          log(array.length + 1 - tasksLeft, 'Rendering Routes:', array.length);
+        }
+      }
       logTime = now;
     }
     if (executing.length >= MaxParalellTasks) {
@@ -33,7 +41,11 @@ export async function asyncPool<T>(MaxParalellTasks: number, array: T[], taskFn:
     /** inform used tasks are still running. */
     await Promise.race([...executing, waitForIt(progressTime)]);
   }
-  printProgress(array.length, 'Rendering Routes:', array.length);
+  if (scullyConfig.interactiveLogging) {
+    printProgress(array.length, 'Rendering Routes:', array.length);
+  } else {
+    log('Rendering Routes: Complete.  Routes Rendered:', array.length);
+  }
   return Promise.all(ret);
 }
 
