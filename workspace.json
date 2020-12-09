@@ -386,6 +386,89 @@
         }
       }
     },
+    "sample-many-routes": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/sample-many-routes",
+      "sourceRoot": "apps/sample-many-routes/src",
+      "prefix": "scullyio",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/sample-many-routes",
+            "index": "apps/sample-many-routes/src/index.html",
+            "main": "apps/sample-many-routes/src/main.ts",
+            "polyfills": "apps/sample-many-routes/src/polyfills.ts",
+            "tsConfig": "apps/sample-many-routes/tsconfig.app.json",
+            "aot": true,
+            "statsJson": false,
+            "assets": ["apps/sample-many-routes/src/favicon.ico", "apps/sample-many-routes/src/assets"],
+            "styles": [],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "statsJson": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sample-many-routes:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sample-many-routes:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sample-many-routes:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/sample-many-routes/tsconfig.app.json", "apps/sample-many-routes/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/sample-simple/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/sample-many-routes/jest.config.js",
+            "tsConfig": "apps/sample-many-routes/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/sample-many-routes/src/test-setup.ts"
+          }
+        }
+      }
+    },
     "plugins-extra": {
       "root": "libs/plugins/extra",
       "sourceRoot": "libs/plugins/extra/src",

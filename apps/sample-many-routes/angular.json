@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "sample-many-routes"
+  "defaultProject": "sample-many-routes",
+  "cli": {
+    "analytics": "e72bf718-9d97-49a6-9ed5-f52a67426a92"
+  }
 }

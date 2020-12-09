@@ -1,0 +1,5 @@
+<h1>Disease List -- {{ globalService.diseasesCount }} Diseases on file</h1>
+
+<p *ngFor="let disease of globalService.arrDiseaseList">
+  <a [routerLink]="['/detail', disease.EncodedName]">{{ disease.Name }}</a>
+</p>
