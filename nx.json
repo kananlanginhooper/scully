@@ -14,9 +14,9 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "accessToken": "YzliMjIxNGUtZDFiYS00NWY4LWExNjItYTBiMTI3MjliMTYxfHJlYWQ=",
+        "accessToken": "MmY1YmJmNmUtMWFhMC00MWMwLWI1NmMtYWM0YTYzNWI4NTM4fHJlYWQtd3JpdGU=",
         "cacheableOperations": ["build", "test", "lint", "e2e"],
-        "canTrackAnalytics": true,
+        "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
     }
@@ -35,6 +35,9 @@
       "tags": []
     },
     "scully-docs": {
+      "tags": []
+    },
+    "sample-simple": {
       "tags": []
     },
     "plugins-extra": {

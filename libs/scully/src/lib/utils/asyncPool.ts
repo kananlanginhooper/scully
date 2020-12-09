@@ -22,7 +22,7 @@ export async function asyncPool<T>(MaxParalellTasks: number, array: T[], taskFn:
     const now = performance.now();
     if (now - logTime > progressTime) {
       const tasksLeft = Math.max(array.length - ret.length, executing.length);
-      printProgress(array.length + 1 - tasksLeft, 'Rendering Routes:', array.length);
+      // printProgress(array.length + 1 - tasksLeft, 'Rendering Routes:', array.length);
       logTime = now;
     }
     if (executing.length >= MaxParalellTasks) {

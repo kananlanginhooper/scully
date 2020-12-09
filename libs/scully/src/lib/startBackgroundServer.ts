@@ -6,9 +6,10 @@ import { configFileName, handle404, logSeverity, pjFirst, tds, port } from './ut
 import { ScullyConfig } from './utils/interfacesandenums';
 import { green, log, logError } from './utils/log';
 
-const baseBinary = __dirname + '/scully.js';
+const baseBinary = join(__dirname, '..', 'scully.js');
 
 export function startBackgroundServer(scullyConfig: ScullyConfig) {
+  log(`baseBinary: ${baseBinary}`);
   const binary = existsSync(baseBinary)
     ? baseBinary
     : ['/dist/scully/src/scully', '/node_modules/.bin/scully', '/node_modules/@scullyio/scully/src/scully']

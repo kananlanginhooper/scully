@@ -26,7 +26,7 @@ export interface ScullyConfig {
   outHostFolder?: string;
   /** the place where distribution files of the project are. Should be a subfolder of dist. */
   distFolder?: string;
-  /** the folder used to serve the angular distribution files, defaults to distFolder */
+  /** the folder used to serve the angular distribution files, defaults to dist */
   hostFolder?: string;
   /** transferState only inlined into page, and not written into separate data.json */
   inlineStateOnly?: boolean;
