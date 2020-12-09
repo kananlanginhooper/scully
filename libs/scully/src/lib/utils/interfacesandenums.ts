@@ -58,6 +58,8 @@ export interface ScullyConfig {
   ignoreResourceTypes?: ResourceType[];
   /** how to handle 404 in Scully server */
   handle404?: string;
+  /** Option to set interactive (console clearLine) logging */
+  interactiveLogging?: boolean;
 }
 
 interface RouteConfig {

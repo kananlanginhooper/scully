@@ -23,6 +23,7 @@ export const scullyDefaults: Partial<ScullyConfig> = {
   reloadPort: /** 2667 */ 'scullyLiveReload'.split('').reduce((sum, token) => (sum += token.charCodeAt(0)), 1000),
   hostName: 'localhost',
   defaultPostRenderers: [],
+  interactiveLogging: true,
 };
 
 const loadIt = async () => {
