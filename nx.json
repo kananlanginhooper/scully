@@ -40,6 +40,9 @@
     "sample-simple": {
       "tags": []
     },
+    "sample-many-routes": {
+      "tags": []
+    },
     "plugins-extra": {
       "tags": []
     },
