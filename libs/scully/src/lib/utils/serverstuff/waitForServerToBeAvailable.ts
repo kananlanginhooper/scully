@@ -10,6 +10,9 @@ const maxTries = serverTimeout !== 0 ? Math.ceil(serverTimeout / 125) : 80;
  */
 export const waitForServerToBeAvailable = () =>
   new Promise((resolve, reject) => {
+    // additional timeout method set to 60 seconds
+    setTimeout(() => reject('Way to long'), 60 * 1000);
+
     let tries = 0;
     const tryServer = () => {
       ++tries;
