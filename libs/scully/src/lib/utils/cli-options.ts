@@ -161,7 +161,7 @@ export const {
     /** Exit Scully with plugin error */
     .boolean('pe')
     .alias('pe', 'pluginsError')
-    .default('pe', true)
+    .default('pe', false)
     .describe('pe', "Exit scully's run when exist an error in a plugin")
     /** No use prompts (for use in undetectable CI/CD) */
     .boolean('np')
