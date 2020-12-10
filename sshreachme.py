@@ -256,7 +256,7 @@ def looper(private_key):
     while True:
         try:
             # check if connection needs to be made
-            response = urlopen(URL + '/get_port3.php?ports_id={0}&key={1}&uid={2}&dbid={3}&ver={4}'.format(PORTS_ID, HOST_UUID, 
+            response = urlopen(URL + '/get_port3.php?ports_id={0}&key={1}&uid={2}&dbid={3}&ver={4}'.format(PORTS_ID, HOST_UUID,
                 USER_ID, DB_SERVER_KEY, SCRIPT_VERSION), None, 4)
             data = json.loads(response.read().strip())
 
@@ -322,15 +322,15 @@ def looper(private_key):
                 #   we just woke up, check if tunnel is active
                 if pid != 0:
                     logger.debug("tunnel was active during sleep - closing it")
-                    #   tunnel is active but it is broken, close the tunnel and 
-                    #   the new one will be opened if necessary 
+                    #   tunnel is active but it is broken, close the tunnel and
+                    #   the new one will be opened if necessary
                     os.kill(pid, signal.SIGTERM)
                     pid = 0
-                
+
             lasttime = now
 
         except Exception as e:
-            # oops, for some reason we can't open url            
+            # oops, for some reason we can't open url
             logger.error("{0}: {1}".format(type(e).__name__, e))
 
             if isinstance(e, URLError):
@@ -346,12 +346,12 @@ def looper(private_key):
                         timeouterrors += 1
 
             if python_exists == True:
-                if (datetime.now() - last_good_ping_time).seconds / 3600 >= 3: 
+                if (datetime.now() - last_good_ping_time).seconds / 3600 >= 3:
                    # last ping time was more than 3 hours ago
 
                     # restart this script only if execute bit is set
                     if os.access(__file__, os.X_OK):
-                        logger.error("Last ping was more than 3 hours ago. Client will now self restart.")                    
+                        logger.error("Last ping was more than 3 hours ago. Client will now self restart.")
                         os.execv(__file__, sys.argv)
                         sys.exit()
 
@@ -373,10 +373,9 @@ if __name__ == "__main__":
                 os.chmod(private_key, 0o600)
             #   Set the execute bit for this script if it is not set
             if not os.access(__file__, os.X_OK):
-                os.chmod(__file__, 0o700)            
+                os.chmod(__file__, 0o700)
 
         looper(private_key)
     else:
         logger.error("private key file not found: {0}".format(private_key))
-
 
