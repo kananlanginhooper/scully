@@ -54,7 +54,7 @@ export async function wrap(type: string, name: string | symbol, plugin: (...args
       return;
     }
     logError(
-      ` The ${type} plugin "${yellow(displayName)} has thrown the below error,
+      ` The ${type} plugin "${yellow(displayName)}" has thrown the below error,
               while trying to render route "${yellow(currentRoute || 'unknown')}"
               ${pluginsError ? 'Scully will exit' : 'Results are ignored.'}`
     );
