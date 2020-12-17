@@ -191,7 +191,7 @@ const plugin = async (route: HandledRoute): Promise<string> => {
      * wait for page-read || timeout @ 25 seconds.
      */
     if (showBrowser) {
-      // if (false) {
+      // if (false) {s
       page.evaluate(
         "console.log('\\n\\n------------------------------\\nScully is done, page left open for 120 seconds for inspection\\n------------------------------\\n\\n')"
       );
